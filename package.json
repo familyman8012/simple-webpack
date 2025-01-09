@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Production-ready Webpack configuration",
   "main": "src/index.js",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "scripts": {
     "start": "webpack serve --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
@@ -17,6 +21,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@types/react-helmet-async": "^1.0.3",
+    "core-js": "^3.40.0",
     "postcss-loader": "^8.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

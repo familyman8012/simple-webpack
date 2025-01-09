@@ -21,7 +21,15 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: [
-                '@babel/preset-env',
+                [
+                  '@babel/preset-env',
+                  {
+                    modules: false, // This is important for Tree Shaking
+                    targets: '> 0.25%, not dead',
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                  },
+                ],
                 ['@babel/preset-react', { runtime: 'automatic' }],
                 '@babel/preset-typescript',
               ],
@@ -82,7 +90,7 @@ module.exports = {
         process.env.NODE_ENV === 'production'
           ? path.resolve(__dirname, '../.env')
           : path.resolve(__dirname, '../.env.local'),
-      safe: flase, // .env.example 파일과 비교 검사
+      safe: false, // .env.example 파일과 비교 검사
       allowEmptyValues: true,
       systemvars: true, // 시스템 환경 변수 로드
       defaults: true, // .env 파일을 기본값으로 사용
