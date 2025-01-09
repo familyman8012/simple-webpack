@@ -12,4 +12,11 @@ module.exports = {
   endOfLine: 'auto', // EoF 방식, OS별로 처리 방식이 다름
   htmlWhitespaceSensitivity: 'css', // HTML 공백 감도 설정
   embeddedLanguageFormatting: 'auto',
+  singleAttributePerLine: false,
+  bracketSameLine: false,
+  // 함수 매개변수 줄바꿈 관련 설정
+  arrowFunctionParentheses: 'avoid',
+  functionParentheses: 'avoid',
+  // 인터페이스와 타입 정의에서의 줄바꿈 설정
+  typeBracketSpacing: true,
 };

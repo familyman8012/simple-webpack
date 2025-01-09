@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from '@emotion/styled';
 
@@ -26,19 +26,21 @@ const BackButton = styled(Link)`
   }
 `;
 
-function About() {
+function Item() {
+  const { id } = useParams<{ id: string }>();
+  
   return (
     <Container>
       <Helmet>
-        <title>About - Simple Webpack</title>
-        <meta name="description" content="Simple Webpack 프로젝트의 About 페이지입니다." />
+        <title>아이템 {id} - Simple Webpack</title>
+        <meta name="description" content={`아이템 ${id}의 상세 정보 페이지입니다.`} />
       </Helmet>
       
-      <Title>About 페이지</Title>
-      <p>이 프로젝트는 Webpack, React, TypeScript를 사용하여 구축되었습니다.</p>
+      <Title>아이템 {id} 상세 정보</Title>
+      <p>이것은 아이템 {id}의 상세 페이지입니다.</p>
       <BackButton to="/">홈으로 돌아가기</BackButton>
     </Container>
   );
 }
 
-export default About;
+export default Item;

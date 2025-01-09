@@ -1,22 +1,27 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import { Suspense } from 'react';
+import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import Layout from './components/Layout';
+import routes from './routes';
 
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
+function AppRoutes() {
+  const element = useRoutes(routes);
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      {element}
+    </Suspense>
+  );
+}
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Layout>
+          <AppRoutes />
+        </Layout>
+      </Router>
+    </HelmetProvider>
   );
 }
 
