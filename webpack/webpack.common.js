@@ -35,14 +35,27 @@ module.exports = {
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, // 10KB 이하 이미지는 inline 처리
+          },
+        },
         generator: {
           filename: 'images/[name][ext]',
         },
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline',
+        test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // 8KB 이하 폰트는 inline 처리
+          },
+        },
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
       },
     ],
   },
