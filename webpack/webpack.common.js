@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -75,6 +76,16 @@ module.exports = {
           },
         },
       ],
+    }),
+    new Dotenv({
+      path:
+        process.env.NODE_ENV === 'production'
+          ? path.resolve(__dirname, '../.env')
+          : path.resolve(__dirname, '../.env.local'),
+      safe: flase, // .env.example 파일과 비교 검사
+      allowEmptyValues: true,
+      systemvars: true, // 시스템 환경 변수 로드
+      defaults: true, // .env 파일을 기본값으로 사용
     }),
   ],
 };

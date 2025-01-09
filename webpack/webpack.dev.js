@@ -27,9 +27,6 @@ module.exports = () => {
       compress: true,
     },
     plugins: [
-      new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify("development"),
-      }),
       new ReactRefreshWebpackPlugin(),
     ],
     optimization: {
